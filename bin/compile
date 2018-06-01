@@ -32,6 +32,8 @@ source $bp_dir/bin/util/failures.sh
 source $bp_dir/bin/util/newrelic.sh
 source $bp_dir/bin/util/blackfire.sh
 
+source $bp_dir/bin/util/sqlsrv.sh
+
 # if this is set it prevents Git clones (e.g. for Composer installs from source) during the build in some circumstances, and it is set in SSH Git deploys to Heroku
 unset GIT_DIR
 
@@ -426,6 +428,8 @@ if [[ "${HEROKU_PHP_INSTALL_DEV+CI}" != "CI" ]]; then
 	install_newrelic_ext
 	install_newrelic_userini
 fi
+
+install_sqlsrv_ext
 
 # done with platform installs; restore COMPOSER from previous value
 export COMPOSER="$COMPOSER_bak"
